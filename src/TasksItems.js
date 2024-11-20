@@ -6,7 +6,6 @@ export function TasksItems({ filter, tasks, handleToggle, handleDelete }) {
       <>
         {tasks.map((item) => (
           <div className="card" key={item.id}>
-            <p>Id: {item.id}</p>
             <p>Task Name: {item.taskName}</p>
             <p>Description: {item.description}</p>
             <p>
@@ -36,7 +35,6 @@ export function TasksItems({ filter, tasks, handleToggle, handleDelete }) {
       <>
         {filtereditems.map((item) => (
           <div className="card" key={item.id}>
-            <p>Id: {item.id}</p>
             <p>Task Name: {item.taskName}</p>
             <p>Description: {item.description}</p>
             <p>
