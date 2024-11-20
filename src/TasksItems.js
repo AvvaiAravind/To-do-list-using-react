@@ -1,4 +1,10 @@
-export function TasksItems({ filter, tasks, handleToggle, handleDelete }) {
+export function TasksItems({
+  filter,
+  tasks,
+  handleToggle,
+  handleDelete,
+  handleEdit,
+}) {
   console.log(filter, tasks);
 
   if (filter === "Select All" && tasks.length) {
@@ -22,6 +28,9 @@ export function TasksItems({ filter, tasks, handleToggle, handleDelete }) {
             </p>
             <button type="button" onClick={() => handleDelete(item.id)}>
               Delete
+            </button>
+            <button type="button" onClick={() => handleEdit(item.id)}>
+              Edit
             </button>
           </div>
         ))}
@@ -49,9 +58,14 @@ export function TasksItems({ filter, tasks, handleToggle, handleDelete }) {
                 {item.status}
               </button>
             </p>
-            <button type="button" onClick={() => handleDelete(item.id)}>
-              Delete
-            </button>
+            <div className="btn-container">
+              <button type="button" onClick={() => handleDelete(item.id)}>
+                Delete
+              </button>
+              <button type="button" onClick={() => handleEdit(item.id)}>
+                Edit
+              </button>
+            </div>
           </div>
         ))}
       </>

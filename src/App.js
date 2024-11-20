@@ -12,6 +12,8 @@ function App() {
 
   const [filter, setFilter] = useState("Select All");
 
+  const [taskToEdit, setTaskToEdit] = useState(null);
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -30,18 +32,30 @@ function App() {
       alert("Both priority and status is must");
       return;
     }
-    setTasks((prev) => {
-      return [
-        ...prev,
-        {
-          id: Date.now(),
-          taskName: taskName,
-          description: description,
-          priority: priority,
-          status: status,
-        },
-      ];
-    });
+    if (taskToEdit) {
+      setTasks((prev) =>
+        prev.map((task) =>
+          task.id === taskToEdit.id
+            ? { ...task, taskName, description, priority, status }
+            : task
+        )
+      );
+
+      setTaskToEdit(null);
+    } else {
+      setTasks((prev) => {
+        return [
+          ...prev,
+          {
+            id: Date.now(),
+            taskName: taskName,
+            description: description,
+            priority: priority,
+            status: status,
+          },
+        ];
+      });
+    }
   };
 
   const handleToggle = (id, target) => {
@@ -64,11 +78,20 @@ function App() {
     setTasks((prev) => prev.filter((item) => item.id !== id));
   };
 
+  const handleEdit = (id) => {
+    const task = tasks.find((task) => task.id === id);
+    setTaskToEdit(task);
+  };
+
   return (
     <>
       <h1>To-Do List</h1>
       <div className="interactive">
-        <TaskInput handleSave={handleSave} />
+        <TaskInput
+          handleSave={handleSave}
+          taskToEdit={taskToEdit}
+          setTaskToEdit={setTaskToEdit}
+        />
         <FilterButton filter={filter} setFilter={setFilter} />
       </div>
       <div className="display">
@@ -77,6 +100,7 @@ function App() {
           filter={filter}
           handleToggle={handleToggle}
           handleDelete={handleDelete}
+          handleEdit={handleEdit}
         />
       </div>
     </>

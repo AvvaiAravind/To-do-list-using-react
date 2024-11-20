@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
-export function TaskInput({ handleSave }) {
+export function TaskInput({ handleSave, taskToEdit, setTaskToEdit }) {
   // const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
@@ -8,6 +8,14 @@ export function TaskInput({ handleSave }) {
   const [status, setStatus] = useState("");
   const dialog = useRef(null);
   const form = useRef(null);
+
+  console.log(taskToEdit);
+
+  useEffect(() => {
+    if (taskToEdit) {
+      openDialog();
+    }
+  }, [taskToEdit]);
 
   const openDialog = () => {
     if (dialog.current) {
@@ -25,6 +33,7 @@ export function TaskInput({ handleSave }) {
     setDescription("");
     setPriority("");
     setStatus("");
+    setTaskToEdit(null);
   };
 
   const handleTaskName = (e) => {
@@ -96,7 +105,7 @@ export function TaskInput({ handleSave }) {
             />
           </div>
           <button type="submit" id="saveTask">
-            Add
+            {taskToEdit ? "Edit Task" : "Add"}
           </button>
           <button type="button" onClick={handleCloseDialog} id="closeDialog">
             Close
