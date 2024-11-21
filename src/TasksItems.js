@@ -49,13 +49,13 @@ export function TasksItems({
             <p>Task Name: {item.taskName}</p>
             <p>Description: {item.description}</p>
             <p>
-              Priority:
+              Priority:{" "}
               <button onClick={() => handleToggle(item.id, "priority")}>
                 {item.priority}
               </button>
             </p>
             <p>
-              Status:
+              Status:{" "}
               <button onClick={() => handleToggle(item.id)}>
                 {item.status}
               </button>
