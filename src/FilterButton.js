@@ -18,6 +18,8 @@ export function FilterButton({ filter, setFilter }) {
         <option value="Select All">Select All</option>
         <option value="Completed">Completed</option>
         <option value="Pending">Pending</option>
+        <option value="Started">Started</option>
+        <option value="Ongoing">Ongoing</option>
         <option value="High">High</option>
         <option value="Low">Low</option>
       </select>

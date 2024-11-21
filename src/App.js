@@ -14,6 +14,8 @@ function App() {
 
   const [taskToEdit, setTaskToEdit] = useState(null);
 
+  // const [newstatus, setNewStatus] = useState(JSON.);
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -58,7 +60,29 @@ function App() {
     }
   };
 
-  const handleToggle = (id, target) => {
+  const handleToggle = (id, target, status) => {
+    let newStatus;
+    if (target === "status") {
+      // const filteredItem = tasks.filter((item) => item.id === id);
+
+      switch (status) {
+        case "Started":
+          newStatus = "Started";
+          break;
+        case "Ongoing":
+          newStatus = "Ongoing";
+          break;
+        case "Pending":
+          newStatus = "Pending";
+          break;
+        case "Completed":
+          newStatus = "Completed";
+          break;
+        default:
+          newStatus = "update Status";
+          break;
+      }
+    }
     setTasks((prev) =>
       prev.map((item) => {
         if (item.id === id) {
@@ -66,7 +90,7 @@ function App() {
             ? { ...item, priority: item.priority === "High" ? "Low" : "High" }
             : {
                 ...item,
-                status: item.status === "Pending" ? "Completed" : "Pending",
+                status: newStatus,
               };
         }
         return item;

@@ -6,6 +6,7 @@ export function TasksItems({
   handleEdit,
 }) {
   console.log(filter, tasks);
+  // const [status, setStatus] = useState("Update Status");
 
   if (filter === "Select All" && tasks.length) {
     return (
@@ -22,9 +23,25 @@ export function TasksItems({
             </p>
             <p>
               Status:{" "}
-              <button onClick={() => handleToggle(item.id, "status")}>
+              {/* <button onClick={() => handleToggle(item.id, "status")}>
                 {item.status}
-              </button>
+              </button> */}
+              <select
+                name="status"
+                id="status"
+                required
+                onChange={(e) => {
+                  const newStatus = e.target.value;
+
+                  handleToggle(item.id, "status", newStatus);
+                }}
+                value={item.status}
+              >
+                <option value="Started">Started</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Pending">Pending</option>
+                <option value="Completed">Completed</option>
+              </select>
             </p>
             <div className="btn-container">
               <button type="button" onClick={() => handleDelete(item.id)}>
@@ -56,9 +73,24 @@ export function TasksItems({
             </p>
             <p>
               Status:{" "}
-              <button onClick={() => handleToggle(item.id)}>
+              {/* <button onClick={(() => handleToggle(item.id), "status")}>
                 {item.status}
-              </button>
+              </button> */}
+              <select
+                name="status"
+                id="status"
+                required
+                onChange={(e) => {
+                  const newStatus = e.target.value;
+
+                  handleToggle(item.id, "status", newStatus);
+                }}
+              >
+                <option value="Started">Started</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Pending">Pending</option>
+                <option value="Completed">Compledted</option>
+              </select>
             </p>
             <div className="btn-container">
               <button type="button" onClick={() => handleDelete(item.id)}>

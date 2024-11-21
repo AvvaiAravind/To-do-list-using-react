@@ -100,6 +100,8 @@ export function TaskInput({ handleSave, taskToEdit, setTaskToEdit }) {
               id="status"
               option1="Completed"
               option2="Pending"
+              option3="Started"
+              option4="Ongoing"
               onChange={handleStatusChange}
               input={status}
             />
@@ -132,13 +134,15 @@ function Input({ placeholder, id, onChange, input }) {
   );
 }
 
-function Select({ id, option1, option2, onChange, input }) {
+function Select({ id, option1, option2, onChange, input, option3, option4 }) {
   return (
     <label htmlFor={id}>
       <select name={id} id={id} onChange={onChange} value={input} required>
         <option value="Default">Default</option>
         <option value={option1}>{option1}</option>
         <option value={option2}>{option2}</option>
+        {option3 && <option value={option3}>{option3}</option>}
+        {option4 && <option value={option4}>{option4}</option>}
       </select>
     </label>
   );
