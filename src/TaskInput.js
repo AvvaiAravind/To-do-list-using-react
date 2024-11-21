@@ -78,7 +78,7 @@ export function TaskInput({ handleSave, taskToEdit, setTaskToEdit }) {
         >
           <Input
             id="taskName"
-            placeholder="Enter Your Name"
+            placeholder="Enter Your Task Name"
             onChange={handleTaskName}
             input={taskName}
           />
