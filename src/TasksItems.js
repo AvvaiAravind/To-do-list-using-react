@@ -26,12 +26,14 @@ export function TasksItems({
                 {item.status}
               </button>
             </p>
-            <button type="button" onClick={() => handleDelete(item.id)}>
-              Delete
-            </button>
-            <button type="button" onClick={() => handleEdit(item.id)}>
-              Edit
-            </button>
+            <div className="btn-container">
+              <button type="button" onClick={() => handleDelete(item.id)}>
+                Delete
+              </button>
+              <button type="button" onClick={() => handleEdit(item.id)}>
+                Edit
+              </button>
+            </div>
           </div>
         ))}
       </>
